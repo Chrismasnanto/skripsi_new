@@ -4,6 +4,8 @@ include "../../config/database.php";
 include "../includes/header.php";
 include "../includes/sidebar.php";
 
+/** @var mysqli $conn */
+
 if (isset($_POST['simpan'])) {
     $id_admin = $_SESSION['admin'];
 

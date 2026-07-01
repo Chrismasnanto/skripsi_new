@@ -25,6 +25,10 @@ if (isset($_POST['update'])) {
     $nama_motif = mysqli_real_escape_string($conn, $_POST['nama_motif']);
     $asal_daerah = mysqli_real_escape_string($conn, $_POST['asal_daerah']);
     $makna = mysqli_real_escape_string($conn, $_POST['makna']);
+    $ciri_motif = mysqli_real_escape_string($conn, $_POST['ciri_motif']);
+    $warna_dominan = mysqli_real_escape_string($conn, $_POST['warna_dominan']);
+    $filosofi_visual = mysqli_real_escape_string($conn, $_POST['filosofi_visual']);
+    $penggunaan = mysqli_real_escape_string($conn, $_POST['penggunaan']);
 
     $gambar = $data['gambar'];
 
@@ -61,6 +65,10 @@ if (isset($_POST['update'])) {
                                     nama_motif='$nama_motif',
                                     asal_daerah='$asal_daerah',
                                     makna='$makna',
+                                    ciri_motif='$ciri_motif',
+                                    warna_dominan='$warna_dominan',
+                                    filosofi_visual='$filosofi_visual',
+                                    penggunaan='$penggunaan',
                                     gambar='$gambar'
                                   WHERE id_motif='$id'");
 
@@ -108,6 +116,7 @@ if (isset($_POST['update'])) {
             </div>
 
             <form action="" method="POST" enctype="multipart/form-data" class="admin-form">
+    <input type="hidden" name="id_motif" value="<?= $data['id_motif']; ?>">
 
                 <div class="form-admin-group">
                     <label>Nama Motif</label>
@@ -130,6 +139,40 @@ if (isset($_POST['update'])) {
                     <textarea name="makna"
                               rows="8"
                               required><?= htmlspecialchars($data['makna']); ?></textarea>
+                </div>
+
+                <div class="form-admin-group">
+                    <label>Ciri-ciri Motif</label>
+                    <textarea
+                        name="ciri_motif"
+                        rows="5"
+                        required><?= htmlspecialchars($data['ciri_motif']); ?></textarea>
+                </div>
+
+                <div class="form-admin-group">
+                    <label>Warna Dominan</label>
+                    <input
+                        type="text"
+                        name="warna_dominan"
+                        value="<?= htmlspecialchars($data['warna_dominan']); ?>"
+                        required>
+                </div>
+
+
+                <div class="form-admin-group">
+                    <label>Filosofi Visual</label>
+                    <textarea
+                        name="filosofi_visual"
+                        rows="5"
+                        required><?= htmlspecialchars($data['filosofi_visual']); ?></textarea>
+                </div>
+
+                <div class="form-admin-group">
+                    <label>Penggunaan Kain</label>
+                    <textarea
+                        name="penggunaan"
+                        rows="5"
+                        required><?= htmlspecialchars($data['penggunaan']); ?></textarea>
                 </div>
 
                 <div class="form-admin-group">

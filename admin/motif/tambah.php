@@ -13,7 +13,11 @@ if (isset($_POST['simpan'])) {
     $nama_motif = mysqli_real_escape_string($conn, $_POST['nama_motif']);
     $asal_daerah = mysqli_real_escape_string($conn, $_POST['asal_daerah']);
     $makna = mysqli_real_escape_string($conn, $_POST['makna']);
-
+    $ciri_motif = mysqli_real_escape_string($conn, $_POST['ciri_motif']);
+    $warna_dominan = mysqli_real_escape_string($conn, $_POST['warna_dominan']);
+    $filosofi_visual = mysqli_real_escape_string($conn, $_POST['filosofi_visual']);
+    $penggunaan = mysqli_real_escape_string($conn, $_POST['penggunaan']);
+    
     // Cek apakah data motif dengan nama dan asal daerah yang sama sudah ada
     $cek = mysqli_query($conn, "SELECT * FROM motif_makna 
                                 WHERE nama_motif='$nama_motif' 
@@ -54,10 +58,30 @@ if (isset($_POST['simpan'])) {
         }
     }
 
-    $query = mysqli_query($conn, "INSERT INTO motif_makna 
-                                  (id_admin, nama_motif, asal_daerah, makna, gambar)
-                                  VALUES 
-                                  ('$id_admin', '$nama_motif', '$asal_daerah', '$makna', '$gambar')");
+    $query = mysqli_query($conn, "INSERT INTO motif_makna
+    (
+        id_admin,
+        nama_motif,
+        asal_daerah,
+        makna,
+        ciri_motif,
+        warna_dominan,
+        filosofi_visual,
+        penggunaan,
+        gambar
+    )
+    VALUES
+    (
+        '$id_admin',
+        '$nama_motif',
+        '$asal_daerah',
+        '$makna',
+        '$ciri_motif',
+        '$warna_dominan',
+        '$filosofi_visual',
+        '$penggunaan',
+        '$gambar'
+    )");
 
     if ($query) {
         echo "<script>
@@ -117,6 +141,45 @@ if (isset($_POST['simpan'])) {
                 <div class="form-admin-group">
                     <label>Makna</label>
                     <textarea name="makna" rows="8" placeholder="Masukkan makna motif" required></textarea>
+                </div>
+
+                <div class="form-admin-group">
+                    <label>Ciri-ciri Motif</label>
+                    <textarea
+                        name="ciri_motif"
+                        rows="5"
+                        placeholder="Masukkan ciri-ciri visual motif"
+                        required></textarea>
+                </div>
+
+                <div class="form-admin-group">
+                    <label>Warna Dominan</label>
+
+                    <input
+                        type="text"
+                        name="warna_dominan"
+                        placeholder="Contoh : Merah, Hitam, Putih"
+                        required>
+                </div>
+
+                <div class="form-admin-group">
+                    <label>Filosofi Visual</label>
+
+                    <textarea
+                        name="filosofi_visual"
+                        rows="5"
+                        placeholder="Masukkan filosofi visual motif"
+                        required></textarea>
+                </div>
+                
+                <div class="form-admin-group">
+                    <label>Penggunaan Motif</label>
+
+                    <textarea
+                        name="penggunaan"
+                        rows="5"
+                        placeholder="Contoh : Digunakan pada upacara adat, pernikahan, penyambutan tamu, dan acara budaya"
+                        required></textarea>
                 </div>
 
                 <div class="form-admin-group">

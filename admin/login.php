@@ -36,6 +36,19 @@ if (isset($_POST['login'])) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/assets/css/admin.css">
+    
+    <style>
+        /* Tambahan style agar ikon mata terlihat rapi */
+        .form-group { position: relative; }
+        .toggle-password {
+            position: absolute; 
+            right: 15px; 
+            top: 50%; 
+            transform: translateY(-50%);
+            cursor: pointer; 
+            color: #858796;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,9 +62,7 @@ if (isset($_POST['login'])) {
 
             <h1>Login Admin</h1>
 
-            <p>
-                Silahkan masuk untuk mengelola website
-            </p>
+            <p>Silahkan masuk untuk mengelola website</p>
 
             <?php if (!empty($error)) : ?>
                 <div class="login-error">
@@ -68,7 +79,8 @@ if (isset($_POST['login'])) {
 
                 <div class="form-group">
                     <i class="bi bi-lock"></i>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <i class="bi bi-eye toggle-password" id="togglePassword"></i>
                 </div>
 
                 <button type="submit" name="login">
@@ -84,6 +96,20 @@ if (isset($_POST['login'])) {
         </div>
     </section>
 
-</body>
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
 
+        togglePassword.addEventListener('click', function (e) {
+            // Toggle tipe input antara password dan text
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            
+            // Toggle ikon mata (eye vs eye-slash)
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
+
+</body>
 </html>

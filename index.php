@@ -10,8 +10,8 @@ $judul = $data ? $data['judul'] : 'Tenun Ikat Sumba Barat';
 
 $deskripsi = $data ? $data['deskripsi'] : 'Website ini menyajikan informasi mengenai sejarah, motif dan makna, proses pembuatan, serta galeri Tenun Ikat Sumba Barat sebagai media informasi budaya yang mudah diakses masyarakat.';
 
-$gambar = ($data && !empty($data['gambar'])) 
-    ? "/uploads/beranda/" . $data['gambar'] 
+$gambar = ($data && !empty($data['gambar']))
+    ? "/uploads/beranda/" . $data['gambar']
     : "/assets/img/beranda/hero.png";
 ?>
 
@@ -33,7 +33,7 @@ $gambar = ($data && !empty($data['gambar']))
 
                 <div class="hero-actions">
                     <a href="/pages/sejarah.php" class="btn-dark-custom">
-                        Pelajari Lebih Lanjut
+                        Jelajahi Sejarah
                         <i class="bi bi-arrow-right ms-2"></i>
                     </a>
                 </div>
@@ -42,8 +42,8 @@ $gambar = ($data && !empty($data['gambar']))
             <div class="col-lg-6">
                 <div class="hero-image-box">
                     <img src="<?= htmlspecialchars($gambar); ?>"
-                         alt="<?= htmlspecialchars($judul); ?>"
-                         class="home-hero-img">
+                        alt="<?= htmlspecialchars($judul); ?>"
+                        class="home-hero-img">
                 </div>
             </div>
 
@@ -51,6 +51,64 @@ $gambar = ($data && !empty($data['gambar']))
     </div>
 </section>
 
+<!-- IDENTITAS SUMBA BARAT -->
+<section class="home-identity">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">
+                IDENTITAS BUDAYA
+            </span>
+            <h2 class="section-title">
+                Kekayaan Budaya Sumba Barat
+            </h2>
+            <p class="section-subtitle">
+                Tenun Ikat tidak dapat dipisahkan dari kehidupan masyarakat Sumba Barat.
+                Tradisi, simbol adat, dan karya tenun menjadi identitas budaya yang terus
+                diwariskan dari generasi ke generasi.
+            </p>
+
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="identity-card">
+                    <img src="/assets/img/beranda/RumahAdat1.png"
+                        class="identity-image">
+                    <h4>Rumah Adat</h4>
+                    <p>
+                        Rumah adat menjadi pusat kehidupan masyarakat serta simbol
+                        persatuan keluarga di Sumba Barat.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="identity-card">
+                    <img src="/assets/img/beranda/TradisiPasola.png"
+                        class="identity-image">
+                    <h4>Tradisi Pasola</h4>
+                    <p>
+                        Pasola merupakan tradisi perang berkuda yang menjadi ikon budaya
+                        dan daya tarik wisata Sumba Barat.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="identity-card">
+                    <img src="/assets/img/beranda/Mamuli.png"
+                        class="identity-image">
+                    <h4>Mamuli</h4>
+                    <p>
+                        Mamuli merupakan simbol kesuburan, kehidupan, serta penghormatan
+                        terhadap perempuan dalam budaya Sumba Barat.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 <!-- PENGENALAN TENUN IKAT -->
 <section class="home-about">
@@ -65,8 +123,8 @@ $gambar = ($data && !empty($data['gambar']))
 
             <p class="section-subtitle">
                 Tenun Ikat Sumba Barat merupakan warisan budaya yang memiliki nilai sejarah,
-                filosofi, dan identitas masyarakat. Informasi disajikan secara singkat,
-                jelas, terstruktur, dan didukung dengan gambar agar mudah dipahami.
+                keindahan motif, filosofi kehidupan, serta menjadi identitas masyarakat yang
+                tetap dilestarikan hingga saat ini.
             </p>
         </div>
 
@@ -74,8 +132,8 @@ $gambar = ($data && !empty($data['gambar']))
 
             <div class="col-lg-5">
                 <img src="/assets/img/beranda/tentang.png"
-                     alt="Mengenal Tenun Ikat Sumba Barat"
-                     class="about-img">
+                    alt="Mengenal Tenun Ikat Sumba Barat"
+                    class="about-img">
             </div>
 
             <div class="col-lg-7">
@@ -88,8 +146,8 @@ $gambar = ($data && !empty($data['gambar']))
                     <div>
                         <h5>Warisan Budaya</h5>
                         <p>
-                            Tenun Ikat Sumba Barat menjadi bagian dari identitas budaya
-                            yang diwariskan secara turun-temurun oleh masyarakat.
+                            Tenun Ikat diwariskan secara turun-temurun dan menjadi 
+                            bagian penting dalam kehidupan masyarakat adat Sumba Barat.
                         </p>
                     </div>
                 </div>
@@ -102,8 +160,8 @@ $gambar = ($data && !empty($data['gambar']))
                     <div>
                         <h5>Makna Simbolis</h5>
                         <p>
-                            Setiap motif memiliki makna filosofis yang berkaitan dengan
-                            kehidupan, alam, dan kepercayaan masyarakat.
+                            Setiap motif memiliki simbol yang menggambarkan 
+                            kehidupan, alam, leluhur, serta nilai sosial masyarakat.
                         </p>
                     </div>
                 </div>
@@ -116,8 +174,8 @@ $gambar = ($data && !empty($data['gambar']))
                     <div>
                         <h5>Keterampilan Tradisional</h5>
                         <p>
-                            Proses pembuatan dilakukan dengan ketelitian, kesabaran,
-                            dan keterampilan yang diwariskan oleh leluhur.
+                            Proses menenun dilakukan secara tradisional 
+                            dengan ketelitian dan keterampilan yang diwariskan dari generasi ke generasi.
                         </p>
                     </div>
                 </div>
@@ -155,7 +213,7 @@ $gambar = ($data && !empty($data['gambar']))
                     <div class="info-card-body">
                         <h5>Sejarah</h5>
                         <p>
-                            Ketahui sejarah dan perkembangan Tenun Ikat Sumba Barat.
+                            Ketahui asal usul, perkembangan, serta peran Tenun Ikat dalam kehidupan masyarakat Sumba Barat.
                         </p>
 
                         <a href="/pages/sejarah.php">
@@ -173,7 +231,8 @@ $gambar = ($data && !empty($data['gambar']))
                     <div class="info-card-body">
                         <h5>Motif & Makna</h5>
                         <p>
-                            Pelajari nama motif, asal daerah, dan makna filosofisnya.
+                            Pelajari nama motif, ciri-ciri visual, warna dominan, asal daerah, 
+                            dan makna filosofis Tenun Ikat Sumba Barat.
                         </p>
 
                         <a href="/pages/motif_makna.php">
@@ -191,7 +250,7 @@ $gambar = ($data && !empty($data['gambar']))
                     <div class="info-card-body">
                         <h5>Proses Pembuatan</h5>
                         <p>
-                            Temukan tahapan pembuatan Tenun Ikat secara tradisional.
+                            Pelajari setiap tahapan pembuatan Tenun Ikat mulai dari persiapan benang hingga proses penenunan.
                         </p>
 
                         <a href="/pages/proses_pembuatan.php">
@@ -209,7 +268,7 @@ $gambar = ($data && !empty($data['gambar']))
                     <div class="info-card-body">
                         <h5>Galeri</h5>
                         <p>
-                            Lihat dokumentasi visual Tenun Ikat Sumba Barat.
+                            Lihat dokumentasi berbagai motif, aktivitas menenun, dan kekayaan budaya Sumba Barat.
                         </p>
 
                         <a href="/pages/galeri.php">
@@ -227,7 +286,7 @@ $gambar = ($data && !empty($data['gambar']))
                     <div class="info-card-body">
                         <h5>About</h5>
                         <p>
-                            Kenali tujuan dan gambaran umum website ini.
+                            Informasi mengenai tujuan website sebagai media pelestarian budaya Tenun Ikat Sumba Barat.
                         </p>
 
                         <a href="/pages/about.php">

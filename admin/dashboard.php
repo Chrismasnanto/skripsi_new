@@ -2,7 +2,6 @@
 include "auth/session.php";
 include "../config/database.php";
 
-
 /** @var mysqli $conn */
 
 $jml_beranda = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM beranda"));
@@ -13,7 +12,6 @@ $jml_galeri  = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM galeri"));
 $jml_about   = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM about"));
 
 $data_terbaru = [];
-
 function tambahDataTerbaru($conn, &$data_terbaru, $sql, $kategori, $folder_upload, $edit_link, $hapus_link)
 {
     $query = mysqli_query($conn, $sql);
@@ -121,12 +119,91 @@ include "includes/header.php";
 include "includes/sidebar.php";
 ?>
 
+<style>
+    .table-responsive-custom {
+        width: 100% !important;
+        overflow-x: auto !important;
+        margin-top: 15px;
+        border: 1px solid #e3e6f0;
+        border-radius: 8px;
+        background: #fff;
+    }
+    
+    .admin-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        table-layout: fixed !important;
+    }
+
+    .admin-table th {
+        background-color: #f8f9fa !important;
+        color: #333 !important;
+        font-weight: 700 !important;
+        padding: 12px 15px !important;
+        border-bottom: 2px solid #dee2e6 !important;
+    }
+
+    .admin-table td {
+        padding: 12px 15px !important;
+        vertical-align: middle !important;
+        border-bottom: 1px solid #dee2e6 !important;
+        color: #333 !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Penataan Ulang Proporsi Lebar Kolom */
+    .col-no {
+        width: 60px !important;
+        text-align: center !important;
+    }
+    
+    .col-gambar {
+        width: 130px !important;
+        text-align: left !important;
+    }
+
+    .col-konten {
+        text-align: left !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+    }
+
+    /* REVISI UTAMA: Diperlebar ke 280px agar area kiri meluas, sehingga teks/badge otomatis bergeser ke kiri */
+    .col-kategori {
+        width: 280px !important;
+        text-align: left !important;
+    }
+
+    .col-aksi {
+        width: 120px !important;
+        text-align: center !important;
+    }
+
+    .btn-action-wrapper {
+        display: flex; 
+        justify-content: center; 
+        gap: 6px;
+    }
+
+    .btn-action-custom {
+        padding: 6px 10px; 
+        border: 1px solid #ccc; 
+        border-radius: 4px; 
+        color: #333; 
+        background: #fff;
+        text-decoration: none; 
+        display: inline-block;
+    }
+
+    .btn-action-delete {
+        color: #dc3545;
+    }
+</style>    
+
 <main class="admin-main">
 
     <div class="admin-topbar">
-
         <div class="topbar-account">
-
             <div class="topbar-account-icon">
                 <i class="bi bi-person"></i>
             </div>
@@ -136,49 +213,26 @@ include "includes/sidebar.php";
             </div>
 
             <div class="topbar-account-menu">
-
                 <button type="button" class="topbar-account-btn" onclick="toggleAccountDropdown(event)">
                     <i class="bi bi-chevron-down"></i>
                 </button>
 
                 <div class="topbar-account-dropdown" id="topbarAccountDropdown">
-
                     <div class="account-dropdown-profile">
-
                         <div class="account-dropdown-avatar">
                             <i class="bi bi-person"></i>
                         </div>
-
                         <div>
-                            <strong>
-                                <?= htmlspecialchars($_SESSION['nama'] ?? 'Administrator'); ?>
-                            </strong>
-
-                            <small>
-                                <?= htmlspecialchars($_SESSION['username'] ?? 'admin'); ?>
-                            </small>
+                            <strong><?= htmlspecialchars($_SESSION['nama'] ?? 'Administrator'); ?></strong>
+                            <small><?= htmlspecialchars($_SESSION['username'] ?? 'admin'); ?></small>
                         </div>
-
                     </div>
-
                     <div class="account-dropdown-line"></div>
-
-                    <a href="logout.php">
-                        <i class="bi bi-arrow-repeat"></i>
-                        Ganti Akun
-                    </a>
-
-                    <a href="logout.php">
-                        <i class="bi bi-box-arrow-right"></i>
-                        Logout
-                    </a>
-
+                    <a href="logout.php"><i class="bi bi-arrow-repeat"></i> Ganti Akun</a>
+                    <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <section class="admin-content">
@@ -186,12 +240,8 @@ include "includes/sidebar.php";
         <h1>Dashboard</h1>
 
         <div class="dashboard-summary">
-
             <div class="summary-card">
-                <div class="summary-icon">
-                    <i class="bi bi-house-door"></i>
-                </div>
-
+                <div class="summary-icon"><i class="bi bi-house-door"></i></div>
                 <div>
                     <span>Beranda</span>
                     <h3><?= $jml_beranda; ?></h3>
@@ -200,10 +250,7 @@ include "includes/sidebar.php";
             </div>
 
             <div class="summary-card">
-                <div class="summary-icon">
-                    <i class="bi bi-clock-history"></i>
-                </div>
-
+                <div class="summary-icon"><i class="bi bi-clock-history"></i></div>
                 <div>
                     <span>Sejarah</span>
                     <h3><?= $jml_sejarah; ?></h3>
@@ -212,10 +259,7 @@ include "includes/sidebar.php";
             </div>
 
             <div class="summary-card">
-                <div class="summary-icon">
-                    <i class="bi bi-grid-3x3-gap"></i>
-                </div>
-
+                <div class="summary-icon"><i class="bi bi-grid-3x3-gap"></i></div>
                 <div>
                     <span>Motif & Makna</span>
                     <h3><?= $jml_motif; ?></h3>
@@ -224,10 +268,7 @@ include "includes/sidebar.php";
             </div>
 
             <div class="summary-card">
-                <div class="summary-icon">
-                    <i class="bi bi-sliders"></i>
-                </div>
-
+                <div class="summary-icon"><i class="bi bi-sliders"></i></div>
                 <div>
                     <span>Proses Pembuatan</span>
                     <h3><?= $jml_proses; ?></h3>
@@ -236,10 +277,7 @@ include "includes/sidebar.php";
             </div>
 
             <div class="summary-card">
-                <div class="summary-icon">
-                    <i class="bi bi-image"></i>
-                </div>
-
+                <div class="summary-icon"><i class="bi bi-image"></i></div>
                 <div>
                     <span>Galeri</span>
                     <h3><?= $jml_galeri; ?></h3>
@@ -248,116 +286,85 @@ include "includes/sidebar.php";
             </div>
 
             <div class="summary-card">
-                <div class="summary-icon">
-                    <i class="bi bi-info-circle"></i>
-                </div>
-
+                <div class="summary-icon"><i class="bi bi-info-circle"></i></div>
                 <div>
                     <span>About</span>
                     <h3><?= $jml_about; ?></h3>
                     <p>Data</p>
                 </div>
             </div>
-
         </div>
 
-        <div class="admin-table-box">
-
+        <div class="admin-data-box" style="margin-top: 25px;">
             <h2>Data Terbaru</h2>
 
-            <div class="table-responsive">
-
-                <table class="admin-wire-table">
-
+            <div class="table-responsive-custom">
+                <table class="admin-table">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Konten</th>
-                            <th>Kategori</th>
-                            <th>Aksi</th>
+                            <th class="col-no">No.</th>
+                            <th class="col-gambar">Gambar</th>
+                            <th class="col-konten">Konten</th>
+                            <th class="col-kategori">Kategori</th>
+                            <th class="col-aksi">Aksi</th>
                         </tr>
                     </thead>
 
                     <tbody>
-
                         <?php if (!empty($data_terbaru)) : ?>
-
                             <?php foreach ($data_terbaru as $index => $data) : ?>
-
                                 <tr>
-
-                                    <td>
-                                        <?= $index + 1; ?>
+                                    <td class="col-no" style="font-weight: 600; color: #666;">
+                                        <?= $index + 1; ?>.
                                     </td>
 
-                                    <td>
-                                        <div class="table-content-flex">
-
-                                            <?php if (!empty($data['gambar'])) : ?>
-
-                                                <img
-                                                    src="<?= htmlspecialchars($data['folder_upload'] . $data['gambar']); ?>"
-                                                    alt="<?= htmlspecialchars($data['konten']); ?>"
-                                                    class="admin-thumb">
-
-                                            <?php else : ?>
-
-                                                <div class="table-image-placeholder">
-                                                    <i class="bi bi-image"></i>
-                                                </div>
-
-                                            <?php endif; ?>
-
-                                            <span>
-                                                <?= htmlspecialchars($data['konten']); ?>
-                                            </span>
-
-                                        </div>
+                                    <td class="col-gambar">
+                                        <?php if (!empty($data['gambar'])) : ?>
+                                            <img src="<?= htmlspecialchars($data['folder_upload'] . $data['gambar']); ?>"
+                                                 alt="<?= htmlspecialchars($data['konten']); ?>"
+                                                 style="width: 100px; height: 100px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                        <?php else : ?>
+                                            <div style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #eee; border-radius: 6px;">
+                                                <i class="bi bi-image" style="color: #ccc; font-size: 1.5rem;"></i>
+                                            </div>
+                                        <?php endif; ?>
                                     </td>
 
-                                    <td>
-                                        <?= htmlspecialchars($data['kategori']); ?>
+                                    <td class="col-konten">
+                                       <?= htmlspecialchars($data['konten']); ?> 
                                     </td>
 
-                                    <td>
-                                        <div class="table-action">
+                                    <td class="col-kategori">
+                                          
+                                            <?= htmlspecialchars($data['kategori']); ?>
+                                        
+                                    </td>
 
-                                            <a
-                                                href="<?= htmlspecialchars($data['edit_link'] . $data['id']); ?>"
-                                                class="btn-table-action">
+                                    <td class="col-aksi">
+                                        <div class="btn-action-wrapper">
+                                            <a href="<?= htmlspecialchars($data['edit_link'] . $data['id']); ?>" class="btn-action-custom" title="Edit">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-
-                                            <a
-                                                href="<?= htmlspecialchars($data['hapus_link'] . $data['id']); ?>"
-                                                class="btn-table-action"
-                                                onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                            <a href="<?= htmlspecialchars($data['hapus_link'] . $data['id']); ?>"
+                                               class="btn-action-custom btn-action-delete"
+                                               onclick="return confirm('Yakin ingin menghapus data ini?')"
+                                               title="Hapus">
                                                 <i class="bi bi-trash"></i>
                                             </a>
-
                                         </div>
                                     </td>
-
                                 </tr>
-
                             <?php endforeach; ?>
-
                         <?php else : ?>
-
                             <tr>
-                                <td colspan="4" class="text-center">
+                                <td colspan="5" style="text-align: center; padding: 20px; color: #858796;">
                                     Data terbaru belum tersedia.
                                 </td>
                             </tr>
-
                         <?php endif; ?>
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
 
     </section>

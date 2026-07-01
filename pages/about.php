@@ -39,7 +39,7 @@ Dengan adanya website ini, informasi mengenai Tenun Ikat Sumba Barat dapat diaks
         <div class="row align-items-center g-5">
 
             <div class="col-lg-6">
-                <span class="section-badge">ABOUT</span>
+                <span class="section-badge">About</span>
 
                 <h1 class="about-hero-title">
                     <?= htmlspecialchars($judul_tujuan); ?>
